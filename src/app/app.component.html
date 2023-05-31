@@ -1,0 +1,37 @@
+<po-page-default p-title="PO Page Default">
+
+<po-dynamic-form
+  #dynamicForm
+  p-auto-focus="name"
+  [p-fields]="fields"
+  [p-value]="req"
+>
+</po-dynamic-form>
+
+<div class="po-row">
+  <po-button
+    class="po-md-3"
+    p-label="Save"
+    [p-disabled]="dynamicForm?.form.invalid"
+    (p-click)="openModal();"
+  >
+  </po-button>
+</div>
+
+</po-page-default>
+
+
+<po-modal p-title="Options" [p-primary-action]="confirm" [p-secondary-action]="close">
+  <form #optionsForm="ngForm">
+  <div class="po-row">
+      <po-textarea class="po-md-12" name="orderDetail" [(ngModel)]="req.credential">
+      </po-textarea>
+    </div>
+    </form>
+
+  <po-modal-footer [p-disabled-align]="false">
+    <po-button p-label="Close" (p-click)="closeModal()"> </po-button>
+    <po-button p-label="Clear" (p-click)="restore()"> </po-button>
+    <po-button p-kind="primary" p-label="Confirm" (p-click)="sendReqToken()"> </po-button>
+  </po-modal-footer>
+</po-modal>
